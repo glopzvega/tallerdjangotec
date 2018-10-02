@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'catalogo/css/bootstrap.min.css' %}">
+</head>
+<body>
+	<div class="container">
+		
+	<h1>Listado de Libros desde Template</h1>
+	<!-- <ul>		
+	{% for libro in data %}
+		<li>{{ libro.title }}, {{ libro.author}}</li>
+	{% endfor %}
+	</ul> -->
+	<a class="btn btn-primary" href="{% url 'formulario' %}">Nuevo</a>
+	<hr>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th>Id</th>
+				<th>Titulo</th>
+				<th>Autor</th>
+				<th>Editorial</th>
+				<th>Fecha Edición</th>
+				<th>Idioma</th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for libro in data %}
+			<tr>
+				<td><a href="{% url 'detalle' libro.id %}">{{libro.id}}</a></td>
+				<td>{{ libro.title|title }}</td>
+				<td>{{ libro.author|upper }}</td>
+				<td>{{ libro.publisher|title }}</td>
+				<td>{{ libro.publisher_date|title }}</td>
+				<td>{{ libro.language|lower}}</td>
+				<td><a href="{% url 'editar' libro.id %}">Editar</a></td>
+				<td><a href="{% url 'eliminar' libro.id %}">Eliminar</a></td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	</div>
+
+</body>
+</html>

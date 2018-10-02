@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	{% load static %}
+	<link rel="stylesheet" href="{% static 'catalogo/css/bootstrap.min.css' %}">
+</head>
+<body>
+	<div class="jumbotron">
+	  <h1 class="display-4">404</h1>
+	  <p class="lead">La página que buscas no existe!</p>
+	  <hr class="my-4">
+	  <p>Esta página se mostró porque no encontramos la página solicitada.</p>
+	  <a class="btn btn-primary btn-lg" href="{% url 'index' %}" role="button">Regresar</a>
+	</div>
+	
+</body>
+</html>
