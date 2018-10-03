@@ -36,7 +36,7 @@ def detalle(request, libro_id):
 def formulario(request):	
 
 	if request.method == "POST":
-		form = LibroModelForm(request.POST)
+		form = LibroModelForm(request.POST, request.FILES)
 		if form.is_valid():
 			libro = form.save()
 			return redirect("index")
@@ -53,7 +53,7 @@ def editar(request, id):
 	books = Book.objects.filter(id=id)
 	if books:
 		if request.method == "POST":
-			form = LibroModelForm(request.POST, instance=books[0])
+			form = LibroModelForm(request.POST, request.FILES, instance=books[0])
 			if form.is_valid():
 				libro = form.save()
 				return redirect("index")

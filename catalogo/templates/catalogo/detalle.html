@@ -7,21 +7,32 @@
 	<link rel="stylesheet" href="{% static 'catalogo/css/bootstrap.min.css' %}">
 </head>
 <body>
-	<div class="container">		
-		<h1>{{ libro.title }}</h1>
-		Autor: <h3>{{ libro.author }}</h3>
-		<div>
-			Editorial: {{ libro.publisher }} {{ libro.publisher_date }} 
-			<br>
-			Páginas: {{ libro.pages }} 
-			<br>
-			Idioma: {{ libro.language}}
-		</div>
-		<br>
-		<b>Resumen:</b>
-		<p align="justify">		
-			 {{ libro.content_short }}
-		</p>
+	<div class="container">	
+		<div class="row">
+			<div class="col-4">
+				{% if libro.image %}
+				<img src="{{ libro.image.url }}" alt="" style="width: 100%;">
+				{% else %}
+				<img src="{% static 'catalogo/img/nofound.png' %}" alt="" style="width: 100%;">
+				{% endif %}
+			</div>
+			<div class="col-8">
+				<h1>{{ libro.title }}</h1>
+				Autor: <h3>{{ libro.author }}</h3>
+				<div>
+					Editorial: {{ libro.publisher }} {{ libro.publisher_date }} 
+					<br>
+					Páginas: {{ libro.pages }} 
+					<br>
+					Idioma: {{ libro.language}}
+				</div>
+				<br>
+				<b>Resumen:</b>
+				<p align="justify">		
+					 {{ libro.content_short }}
+				</p>				
+			</div>
+		</div>	
 	</div>
 
 </body>
