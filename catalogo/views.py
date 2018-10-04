@@ -6,7 +6,12 @@ from .models import Book
 from .forms import LibroModelForm
 
 def index(request):
-	return HttpResponse("Hola Mundo!")
+	from django.contrib.staticfiles.templatetags.staticfiles import static
+	import random
+
+	# url = static('catalogo/img/background%s.jpg' % str(random.randint(1,9))) 
+	url = "/static/catalogo/img/background%s.jpg" % str(random.randint(1,9))
+	return render(request, "catalogo/index.html", {"background" : url})
 
 def adios(request):
 	return HttpResponse("Adios que te vaya bien")
@@ -39,7 +44,7 @@ def formulario(request):
 		form = LibroModelForm(request.POST, request.FILES)
 		if form.is_valid():
 			libro = form.save()
-			return redirect("index")
+			return redirect("listado")
 		else:
 			return render(request, "catalogo/formulario.html", {"form" : form})
 
@@ -56,7 +61,7 @@ def editar(request, id):
 			form = LibroModelForm(request.POST, request.FILES, instance=books[0])
 			if form.is_valid():
 				libro = form.save()
-				return redirect("index")
+				return redirect("listado")
 			else:
 				return render(request, "catalogo/formulario.html", {"form" : form})
 
@@ -70,7 +75,7 @@ def editar(request, id):
 def eliminar(request, id):
 	libro = get_object_or_404(Book, pk=id)
 	libro.delete()
-	return redirect("index")
+	return redirect("listado")
 
 def ver_404(request):
 	return render(request, "catalogo/404.html", {})	

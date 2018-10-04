@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Taller Django 2018</title>
+	{% load static %}
+	<link href="https://fonts.googleapis.com/css?family=Courgette|ABeeZee|Open+Sans" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'catalogo/css/bootstrap.min.css' %}">
+	<style>
+		html
+		{
+			height: 100%;
+		}
+		body
+		{
+			background-color: #5596ad;
+			background-image: url("{{ background }}");
+    		/*background-size: 100% 100%;-		*/
+			/*background-repeat: no-repeat;*/
+			height: 100%;	
+		}
+		.container	
+		{
+			padding: 1em;
+		}
+		.card
+		{
+			background: #00000026;
+    		color: white;
+			margin-top: 2em;
+		}
+		.titulo
+		{
+			font-family: 'Courgette', sans-serif;
+			font-size: 36px;
+			color: white;
+			vertical-align: middle;
+			margin-top: 1.5em;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+
+		<div class="row">
+			<div class="col-2 offset-3">
+				<img class="card-img-top" src="{% static 'catalogo/img/logo.png' %}" alt="Card image cap" style="width: 100%;">				
+			</div>
+			<div class="col-4">
+				<div class="titulo">Library.</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div class="card">					
+					<div class="card-body">						
+						<div class="card-title">
+							<label for="">Busca el libro que necesitas:</label>
+							<input type="text" class="form-control">
+							<div class="text-center">	
+								<br>
+								<a href="" class="btn btn-lg btn-dark">
+									Buscar libro
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
