@@ -1,4 +1,4 @@
-# tallerdjantotec
+# tallerdjangotec
 Desarrollo de una libreria en Django 
 
 
