@@ -4,6 +4,7 @@ from django.http import HttpResponse
 
 from .models import Book
 from .forms import LibroModelForm
+from django.db.models import Q
 
 def index(request):
 	from django.contrib.staticfiles.templatetags.staticfiles import static
@@ -18,7 +19,7 @@ def adios(request):
 
 def listado(request):
 	libros = Book.objects.all()
-
+	
 	html = "<ul>"
 
 	for libro in libros:
@@ -30,6 +31,12 @@ def listado(request):
 
 def listado_template(request):
 	libros = Book.objects.all()
+	print("############")
+	if request.GET.get("filter", False):
+		filtro = request.GET["filter"]
+		print(filtro)
+		libros = libros.filter(Q(title__icontains=filtro) | Q(author__icontains=filtro) | Q(publisher__icontains=filtro)).order_by('title')
+		print(libros)
 	return render(request, "catalogo/listado.html", {"data" : libros})	
 
 def detalle(request, libro_id):

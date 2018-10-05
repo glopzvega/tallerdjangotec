@@ -4,18 +4,52 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	{% load static %}
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Courgette|ABeeZee|Open+Sans" rel="stylesheet">
 	<link rel="stylesheet" href="{% static 'catalogo/css/bootstrap.min.css' %}">
+	<style>
+		.navbar-brand
+		{
+			font-family: "Courgette", sans-serif;
+		}
+		.container
+		{
+			padding: 1em;
+		}
+	</style>
 </head>
 <body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <a class="navbar-brand" href="{% url 'index' %}">
+		<img src="{% static 'catalogo/img/logo.png' %}" alt="Logo" height="50px;">
+	  	Library</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav ml-auto">
+	      
+	      <li class="nav-item">
+	        <a class="nav-link" href="{% url 'index' %}">Buscar Otro
+				<i class="fas fa-search"></i>				
+	        </a>
+	      </li>
+	    </ul>
+	    
+	  </div>
+	</nav>
 	<div class="container">
 		
-	<h1>Listado de Libros desde Template</h1>
+	<!-- <h1>Listado de Libros desde Template</h1> -->
 	<!-- <ul>		
 	{% for libro in data %}
 		<li>{{ libro.title }}, {{ libro.author}}</li>
 	{% endfor %}
 	</ul> -->
-	<a class="btn btn-primary" href="{% url 'formulario' %}">Nuevo</a>
+	<a class="btn btn-lg btn-outline-primary" href="{% url 'formulario' %}">
+		<i class="fas fa-book"></i>
+		Nuevo Libro</a>
 	<hr>
 	<table class="table">
 		<thead class="thead-dark">
@@ -33,14 +67,20 @@
 		<tbody>
 			{% for libro in data %}
 			<tr>
-				<td><a href="{% url 'detalle' libro.id %}">{{libro.id}}</a></td>
+				<td><a class="btn btn-link text-secondary" title="Ver Libro" href="{% url 'detalle' libro.id %}">
+					<i class="fas fa-search"></i>
+				</a></td>
 				<td>{{ libro.title|title }}</td>
 				<td>{{ libro.author|upper }}</td>
 				<td>{{ libro.publisher|title }}</td>
 				<td>{{ libro.publisher_date|title }}</td>
 				<td>{{ libro.language|lower}}</td>
-				<td><a href="{% url 'editar' libro.id %}">Editar</a></td>
-				<td><a href="{% url 'eliminar' libro.id %}">Eliminar</a></td>
+				<td><a class="btn btn-link text-success" title="Editar" href="{% url 'editar' libro.id %}">
+					<i class="fas fa-pen"></i>
+				</a></td>
+				<td><a class="btn btn-link text-danger" title="Eliminar" href="{% url 'eliminar' libro.id %}">
+					<i class="fas fa-trash"></i>
+				</a></td>
 			</tr>
 			{% endfor %}
 		</tbody>

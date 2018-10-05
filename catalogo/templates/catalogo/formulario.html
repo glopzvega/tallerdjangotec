@@ -4,32 +4,75 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	{% load static %}
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Courgette|ABeeZee|Open+Sans" rel="stylesheet">
 	<link rel="stylesheet" href="{% static 'catalogo/css/bootstrap.min.css' %}">
+	<style>
+		.navbar-brand
+		{
+			font-family: "Courgette", sans-serif;
+		}
+		.container
+		{
+			padding: 1em;
+		}
+		.title
+		{
+			font-family: "ABeeZee", sans-serif;			
+		}
+	</style>
 </head>
 <body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	  <a class="navbar-brand" href="{% url 'index' %}">
+		<img src="{% static 'catalogo/img/logo.png' %}" alt="Logo" height="50px;">
+	  	Library</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav ml-auto">
+	      
+	      <li class="nav-item">
+	        <a class="nav-link" href="{% url 'index' %}">Buscar Otro
+				<i class="fas fa-search"></i>				
+	        </a>
+	      </li>
+	    </ul>
+	    
+	  </div>
+	</nav>
 	<div class="container">
 		
-	<h1>Formulario</h1>
-	{% if form.errors %}
-	    {% for field in form %}
-	        {% for error in field.errors %}
-	            <div class="alert alert-danger">
-	                <strong>{{ error|escape }}</strong>
-	            </div>
-	        {% endfor %}
-	    {% endfor %}
-	    {% for error in form.non_field_errors %}
-	        <div class="alert alert-danger">
-	            <strong>{{ error|escape }}</strong>
-	        </div>
-	    {% endfor %}
-	{% endif %}
+		<h1 class="text-center title">Formulario</h1>	
+		<div class="row">
+			<div class="col-6 offset-3">			
 
-	<form action="" method="POST" enctype="multipart/form-data">	
-	{% csrf_token %}	
-	{{ form.as_p }}	
-	<input class="btn btn-outline-success" type="submit" value="Guardar">
-	</form>
+				<form action="" method="POST" enctype="multipart/form-data">	
+					{% csrf_token %}	
+					<div class="row">			
+						{% for field in form %}
+							<div class="col-12">
+								{{ field.label }}
+								{{ field }}		
+								<br>
+							</div>
+						{% endfor %}	
+					</div>
+					<div class="text-center">							
+						<button class="btn btn-lg btn-outline-success" type="submit">
+							GUARDAR
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
+	<script>
+		document.querySelectorAll("input[type='text'], input[type='number'], input[type='file']").forEach(function(el, index){
+			el.classList.add("form-control")
+		})
+	</script>
 </body>
 </html>

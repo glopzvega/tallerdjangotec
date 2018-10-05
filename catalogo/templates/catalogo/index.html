@@ -39,30 +39,35 @@
 		}
 	</style>
 </head>
-<body>
+<body>	
 	<div class="container">
 
 		<div class="row">
-			<div class="col-2 offset-3">
+			<div class="col-2 offset-4">
 				<img class="card-img-top" src="{% static 'catalogo/img/logo.png' %}" alt="Card image cap" style="width: 100%;">				
 			</div>
-			<div class="col-4">
+			<div class="col-2">
 				<div class="titulo">Library.</div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-12">
+			<div class="col-6 offset-3">
 				<div class="card">					
 					<div class="card-body">						
 						<div class="card-title">
-							<label for="">Busca el libro que necesitas:</label>
-							<input type="text" class="form-control">
-							<div class="text-center">	
-								<br>
-								<a href="" class="btn btn-lg btn-dark">
-									Buscar libro
-								</a>
-							</div>
+							<form action="{% url 'listado' %}" method="GET">								
+								<label for="">Busca el libro que necesitas:</label>
+								<input name="filter" type="text" class="form-control" placeholder="Ejemplo: El principito, Quijote, Iliada, etc.">
+								<div class="text-center">	
+									<br>
+									<button type="submit" class="btn btn-lg btn-dark">
+										Buscar
+									</button>
+									<!-- <a href="" class="btn btn-lg btn-dark">
+										Buscar libro
+									</a> -->
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
